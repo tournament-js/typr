@@ -3,7 +3,9 @@
 The aim of this module is to completely partition the set of JS objects uniquely into exactly one type.
 
 Mathematically;
+
 ∀X⊂JSObjects ∀x∈X ∃!t ∈ types s.t. typr["is"+t] where
+
 types = [Function, Object, Date, Number, String, Boolean, RegExp, Undefined, Arguments, Null, Array]
 
 I.e. for any set of JS objects, every element in this set has exactly one unique type
