@@ -1,0 +1,25 @@
+{
+  "author": "Eirik Albrigtsen <analsandblaster@gmail.com>",
+  "name": "typr",
+  "description": "Mutually exclusive type testing",
+  "version": "0.0.1",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/clux/typr.git"
+  },
+  "main": "typr.js",
+  "engines": {
+    "node": ">=0.6.16"
+  },
+  "scripts": {
+    "test": "expresso"
+  },
+  "dependencies": {},
+  "devDependencies": {
+    "expresso": "~0.9.2"
+  },
+  "bugs": {
+    "url": "http://github.com/clux/typr/issues"
+  },
+  "optionalDependencies": {}
+}
