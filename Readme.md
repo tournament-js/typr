@@ -1,15 +1,15 @@
 # Typr :: Mutually Exclusive JS Type Testring
 
-The aim of this module is to completely partition the set of JS objects uniquely into exactly one type:
+The aim of this module is to completely partition the set of JS objects into a set of types T:
 
-types = [Function, Object, Date, Number, String, Boolean, RegExp, Undefined, Arguments, Null, Array]
+````
+T = [Function, Object, Date, Number, String, Boolean, RegExp, Undefined, Arguments, Null, Array]
+````
 
-*Defn.* For any set X of JS objects, every element in X has exactly one unique type in T
+*Prop. 1* For any set X of JS objects, every element in X has exactly one unique type in T
 where typr returns true for its typecheck.
 
-
-
-Additionally, anything for which isNumber is true can be partitioned into 3 sub-types:
+*Prop. 2* Additionally, anything for which isNumber is true can be partitioned into 3 sub-types:
 
 - isNaN
 - isInfinite
