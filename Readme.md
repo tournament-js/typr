@@ -1,4 +1,4 @@
-# Typr :: Mutually Exclusive JS Type Testring
+# Typr :: Mutually Exclusive JS Type Testring ![travis build status](https://secure.travis-ci.org/clux/typr.png)
 
 The aim of this module is to completely partition the set of JS objects into a set of types T:
 
