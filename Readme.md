@@ -6,7 +6,7 @@ The aim of this module is to completely partition the set of JS objects into a s
 T = [Function, Object, Date, Number, String, Boolean, RegExp, Undefined, Arguments, Null, Array]
 ````
 
-*Prop. 1* For any set X of JS objects, every element in X has exactly one unique type in T
+*Prop. 1* For any set X of JS objects, every element in X has exactly one type in T
 where typr returns true for its typecheck.
 
 *Prop. 2* Additionally, anything for which isNumber is true can be partitioned into 3 sub-types:
