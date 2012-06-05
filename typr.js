@@ -45,3 +45,9 @@ exports.isNaN = function (n) {
 exports.isInfinite = function (n) {
   return Math.abs(n) === Infinity;
 };
+
+// does not follow the partition, but sometimes this is rather what we want
+// functions can have properties => they are Object like, with keys() defined
+exports.hasKeys = function (o) {
+  return Object(o) === o;
+};

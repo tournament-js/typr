@@ -2,22 +2,51 @@ var assert = require('assert')
   , t = require('../typr.js')
   , F = function () {};
 
-exports['test type#partitioning'] = function () {
-  // We expect the that the following arrays can be partitioned as follows
-  var expected = {
-    'Function'  : [ function () {}, F ]
-  , 'Object'    : [ {}, new F(), {a: [1]} ]
-  , 'Array'     : [ [], [1, '2'], [1, [2, [3]]], [13], [[[[]]]] ]
-  , 'Date'      : [ new Date() ]
-  , 'Number'    : [ 223434, 1 / 0, -Infinity, Infinity, NaN, 0 / 0, Date.now(), Number('123'), 0, 1 ]
-  , 'String'    : [ "str", String('str'), 5 + "arst" ]
-  , 'Boolean'   : [ true, false, !5, !null, !undefined ]
-  , 'Null'      : [ null ]
-  , 'RegExp'    : [ /\//, new RegExp("/") ]
-  , 'Undefined' : [ F['unknown_prop'], undefined ]
-  , 'Arguments' : [ arguments ]
-  };
+// this kind of case is slightly problematic
+// it is primarily a function, but will fail isObject even though you can call keys
+var twoThing = function () {}; // primarily a function => isObject
+twoThing.prop = "hello";
 
+var twoThing2 = new String("wee");
+twoThing2.prop = "hi";
+
+exports['test# object likeness extra'] = function () {
+  assert.ok(t.hasKeys(twoThing), "function has keys");
+  assert.ok(t.hasKeys(twoThing2), "new String has keys");
+  assert.ok(!t.hasKeys(5), "number still isn't object like'");
+
+  var values = []
+  Object.keys(expected).forEach(function (key) {
+    expected[key].forEach(function (el) {
+      values.push(el);
+    });
+  });
+  var count = 0;
+  values.map(function (el) {
+    count += 1;
+    if (t.hasKeys(el)) {
+      assert.isDefined(Object.keys(el), "if hasKeys, keys work..");
+    };
+  });
+  console.log('typr: ' + count + ' extra keys checks completed');
+};
+
+// We expect the that the following arrays can be partitioned as follows
+var expected = {
+  'Function'  : [ function () {}, F, twoThing ]
+, 'Object'    : [ {}, new F(), {a: [1]} ]
+, 'Array'     : [ [], [1, '2'], [1, [2, [3]]], [13], [[[[]]]] ]
+, 'Date'      : [ new Date() ]
+, 'Number'    : [ 223434, 1 / 0, -Infinity, Infinity, NaN, 0 / 0, Date.now(), Number('123'), 0, 1 ]
+, 'String'    : [ "str", String('str'), 5 + "arst" , twoThing2]
+, 'Boolean'   : [ true, false, !5, !null, !undefined ]
+, 'Null'      : [ null ]
+, 'RegExp'    : [ /\//, new RegExp("/") ]
+, 'Undefined' : [ F['unknown_prop'], undefined ]
+, 'Arguments' : [ arguments ]
+};
+
+exports['test#type partitioning'] = function () {
   assert.ok(t.isFunction, 't.isFunction exists');
   var testCount = 1;
 
