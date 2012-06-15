@@ -1,4 +1,5 @@
-var assert = require('assert')
+var tap = require('tap')
+  , test = tap.test
   , t = require('../typr.js')
   , F = function () {};
 
@@ -10,10 +11,10 @@ twoThing.prop = "hello";
 var twoThing2 = new String("wee");
 twoThing2.prop = "hi";
 
-exports['test# object likeness extra'] = function () {
-  assert.ok(t.hasKeys(twoThing), "function has keys");
-  assert.ok(t.hasKeys(twoThing2), "new String has keys");
-  assert.ok(!t.hasKeys(5), "number still isn't object like'");
+test('hasKeys', function (a) {
+  a.ok(t.hasKeys(twoThing), "function has keys");
+  a.ok(t.hasKeys(twoThing2), "new String has keys");
+  a.ok(!t.hasKeys(5), "number still isn't object like'");
 
   var values = []
   Object.keys(expected).forEach(function (key) {
@@ -21,15 +22,13 @@ exports['test# object likeness extra'] = function () {
       values.push(el);
     });
   });
-  var count = 0;
   values.map(function (el) {
-    count += 1;
     if (t.hasKeys(el)) {
-      assert.isDefined(Object.keys(el), "if hasKeys, keys work..");
+      a.ok(Object.keys(el), "if hasKeys, keys work..");
     };
   });
-  console.log('typr: ' + count + ' extra keys checks completed');
-};
+  a.end();
+});
 
 // We expect the that the following arrays can be partitioned as follows
 var expected = {
@@ -46,32 +45,28 @@ var expected = {
 , 'Arguments' : [ arguments ]
 };
 
-exports['test#type partitioning'] = function () {
-  assert.ok(t.isFunction, 't.isFunction exists');
-  var testCount = 1;
+test('type partitioning', function (a) {
+  a.ok(t.isFunction, 't.isFunction exists');
 
   Object.keys(expected).forEach(function (type) {
     var ary = expected[type];
 
     // Expect each key to exist on t
-    assert.isDefined(t['is' + type], 'is' + type + ' isDefined');
-    assert.ok(t.isFunction(t['is' + type]), 'isFunction(t.is' + type + ')');
-    testCount += 2;
+    a.ok(t['is' + type], 'is' + type + ' isDefined');
+    a.ok(t.isFunction(t['is' + type]), 'isFunction(t.is' + type + ')');
 
     // Expect each element of ary to satisfy t['is' + type]
     ary.forEach(function (e) {
-      assert.ok(t['is' + type](e), 't.is' + type + ' of ' + Object.prototype.toString.call(e) + ' (' + e + ') is true');
-      testCount += 1;
+      a.ok(t['is' + type](e), 't.is' + type + ' of ' + Object.prototype.toString.call(e) + ' (' + e + ') is true');
     });
 
     // Expect empty call to return true IFF type is 'Undefined'
     if (type === 'Undefined') {
-      assert.ok(t['is' + type](), "empty call isUndefined");
+      a.ok(t['is' + type](), "empty call isUndefined");
     }
     else {
-      assert.ok(!t['is' + type](), "empty call !is" + type);
+      a.ok(!t['is' + type](), "empty call !is" + type);
     }
-    testCount += 1;
 
     Object.keys(expected).forEach(function (innerType) {
       if (innerType === type) {
@@ -80,8 +75,7 @@ exports['test#type partitioning'] = function () {
       var innerAry = expected[innerType];
       // Expect each element of innerAry to not satisy t['is ' + type]
       innerAry.forEach(function (innerEl) {
-        assert.ok(!t['is' + type](innerEl), innerEl + ' !is' + type);
-        testCount += 1;
+        a.ok(!t['is' + type](innerEl), innerEl + ' !is' + type);
       });
     });
 
@@ -92,33 +86,26 @@ exports['test#type partitioning'] = function () {
     if (type === 'Number') {
       return
     }
-    assert.ok(!t['is'+type](NaN), "NaN is not a non-Number type");
-    testCount += 1;
+    a.ok(!t['is'+type](NaN), "NaN is not a non-Number type");
   });
-  assert.ok(t['isNaN'](NaN), "NaN isNaN");
-  testCount += 1;
+  a.ok(t['isNaN'](NaN), "NaN isNaN");
 
   // isNaN should fail for a number and +-Infinity
-  assert.ok(!t['isNaN'](5), "5 is not NaN");
-  assert.ok(!t['isNaN'](-Infinity), "-Infinity is not NaN");
-  assert.ok(!t['isNaN'](Infinity), "Infinity is not NaN");
-  testCount += 3;
+  a.ok(!t['isNaN'](5), "5 is not NaN");
+  a.ok(!t['isNaN'](-Infinity), "-Infinity is not NaN");
+  a.ok(!t['isNaN'](Infinity), "Infinity is not NaN");
 
   // +-Infinity should ellicit true for isNumber and isInfinite only
   Object.keys(expected).forEach(function (type) {
     if (type === 'Number') {
       return
     }
-    assert.ok(!t['is'+type](Infinity), "Infinity is not a non-Number type");
-    assert.ok(!t['is'+type](-Infinity), "-Infinity is not a non-Number type");
-    testCount += 2;
+    a.ok(!t['is'+type](Infinity), "Infinity is not a non-Number type");
+    a.ok(!t['is'+type](-Infinity), "-Infinity is not a non-Number type");
   });
 
   // isInfinite should fail for a Number and NaN
-  assert.ok(!t.isInfinite(NaN), "NaN is not Infinite");
-  assert.ok(!t.isInfinite(5), "5 is not Infinite");
-  testCount += 2;
-
-  // finish with the count
-  console.log('typr: ' + testCount + ' type partitioning tests completed');
-};
+  a.ok(!t.isInfinite(NaN), "NaN is not Infinite");
+  a.ok(!t.isInfinite(5), "5 is not Infinite");
+  a.end();
+});
