@@ -21,5 +21,6 @@
   "bugs": {
     "url": "http://github.com/clux/typr/issues"
   },
-  "optionalDependencies": {}
+  "optionalDependencies": {},
+  "license": "MIT"
 }
