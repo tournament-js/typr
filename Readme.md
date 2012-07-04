@@ -39,7 +39,7 @@ properties to it. Such an object will only be a Function by our partitioning
 (as that was its original construction), but it is Object-like.
 
 If you would rather test for enumerability of properties, use the extra test
-for Object-likeness: `t.hasKeys'.
+for Object-likeness: `hasKeys`.
 
 Note again that this may not be super intuitive:
 
