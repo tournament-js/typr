@@ -46,6 +46,10 @@ t.isInfinite = function (n) {
   return Math.abs(n) === Infinity;
 };
 
+t.isNumeric = function (n) {
+  return !t.isInfinite(n) && !t.isNaN(n);
+}
+
 // does not follow the partition, but sometimes this is rather what we want
 // functions can have properties => they are Object like, with keys() defined
 t.hasKeys = function (o) {

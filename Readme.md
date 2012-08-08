@@ -13,7 +13,7 @@ where typr returns true for its typecheck.
 
 - isNaN
 - isInfinite
-- !isNaN && !isInfinite
+- isNumeric i.e. !isNaN && !isInfinite
 
 *Prop. 3* Any Object like type (which may not be of original Object type), can be
 identified as having keys.
