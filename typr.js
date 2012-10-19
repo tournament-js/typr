@@ -1,7 +1,6 @@
 var t = {}
   , toStr = Object.prototype.toString;
 
-// All JS types that can be simply tested with toStr on node >= 0.4
 [
   'Function'
 , 'Object'    // Object(obj) === obj is not simply true for basetype Object elements
