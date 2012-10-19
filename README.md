@@ -6,17 +6,16 @@ The aim of this module is to completely partition the set of JS objects into a s
 T = [Function, Object, Date, Number, String, Boolean, RegExp, Undefined, Arguments, Null, Array]
 ````
 
-*Prop. 1* For any set X of JS objects, every element in X has exactly one type in T
-where typr returns true for its typecheck.
+*Prop. 1* For every JS object x, x has exactly one type in T where [typr] returns true for its typecheck.
 
-*Prop. 2* Additionally, anything for which isNumber is true can be partitioned into 3 sub-types:
+*Prop. 2* Whether or not an Object has keys and can be looped over is determined by `t.hasKeys` and is completely independent of the type found in prop 1.
+
+*Prop. 3* Number types can be partitioned into 3 sub-types:
 
 - isNaN
 - isInfinite
 - isNumeric i.e. !isNaN && !isInfinite
 
-*Prop. 3* Any Object like type (which may not be of original Object type), can be
-identified as having keys.
 
 These properties are tested extensively.
 
@@ -28,9 +27,11 @@ var typr = require('typr');
 typr.isFunction(el); // true iff el is a function
 ````
 
-### Object Caveat
-The reason for prop 3 is that Objects can masquerade othes instances like
-Functions, Strings, RegExps, Dates and Object.keys() will actually work on some
+Read the very short [API](https://github.com/clux/typr/master/api.md).
+
+### Object Keys
+The reason for prop 2 is that Objects can masquerade othes instances like
+Functions, Strings, RegExps, Dates. Object.keys() (and for-in) will actually work on some
 of these. This does not mean they will have interesting keys, but they sometimes
 do!
 
@@ -38,8 +39,7 @@ A common trick in node modules to export a function, but additionally attach
 properties to it. Such an object will only be a Function by our partitioning
 (as that was its original construction), but it is Object-like.
 
-If you would rather test for enumerability of properties, use the extra test
-for Object-likeness: `hasKeys`.
+If you would rather test for enumerability of properties, use the extra test for Object-likeness: `hasKeys`.
 
 Note again that this may not be super intuitive:
 
@@ -55,22 +55,22 @@ t.hasKeys(dualThing); // true
 
 ## Installation
 
-````bash
+```bash
 $ npm install typr
-````
+```
 
 ## Running tests
 Install development dependencies
 
-````bash
+```bash
 $ npm install
-````
+```
 
 Run the tests
 
-````bash
+```bash
 $ npm test
-````
+```
 
 ## License
 MIT-Licensed. See LICENSE file for details.

@@ -20,35 +20,23 @@ var t = {}
 });
 
 // Do this faster
-t.isArray = function (o) {
-  return Array.isArray(o);
-};
-
-// toStr.call fails for null on node 0.4
-t.isNull = function (o) {
-  return o === null;
-};
-
-// toStr.call fails for undefined on node 0.4
-t.isUndefined = function (o) {
-  var undef;
-  return o === undef;
-};
-
-// This is an extra test, as NaN is (technically) a Number
-// However, NaN is the only value for which === is not reflexive
-t.isNaN = function (n) {
-  return n !== n;
-};
+t.isArray = Array.isArray;
+t.isNaN = Number.isNaN;
+t.isNumeric = Number.isFinite;
 
 // +- Infinity is also a Number so this is also an extra test
 t.isInfinite = function (n) {
   return Math.abs(n) === Infinity;
 };
 
-t.isNumeric = function (n) {
-  return !t.isInfinite(n) && !t.isNaN(n);
-}
+t.isNull = function (o) {
+  return o === null;
+};
+
+t.isUndefined = function (o) {
+  var undef;
+  return o === undef;
+};
 
 // does not follow the partition, but sometimes this is rather what we want
 // functions can have properties => they are Object like, with keys() defined

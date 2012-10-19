@@ -1,3 +1,8 @@
+0.2.0 / 2012-10.19
+==================
+  * Defer to `Number.isFinite` and `Number.isNaN`
+  * Small Cleanup
+
 0.1.1 / 2012-06-05
 ==================
   * Added check for Object enumerability: `hasKeys`
