@@ -64,7 +64,7 @@ Install development dependencies
 
 ```bash
 $ npm install
-```````
+```
 
 Run the tests
 
