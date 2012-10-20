@@ -2,9 +2,9 @@
 
 The aim of this module is to completely partition the set of JS objects into a set of types T:
 
-````
+```
 T = [Function, Object, Date, Number, String, Boolean, RegExp, Undefined, Arguments, Null, Array]
-````
+```
 
 *Prop. 1* For every JS object x, x has exactly one type in T where [typr] returns true for its typecheck.
 
@@ -22,10 +22,10 @@ These properties are tested extensively.
 ## Usage
 Basic usage:
 
-````javascript
+```javascript
 var typr = require('typr');
 typr.isFunction(el); // true iff el is a function
-````
+```
 
 Read the very short [API](https://github.com/clux/typr/master/api.md).
 
@@ -43,7 +43,7 @@ If you would rather test for enumerability of properties, use the extra test for
 
 Note again that this may not be super intuitive:
 
-````javascript
+```javascript
 var dualThing = new String("wee");
 dualThing.prop = "hi";
 Object.keys(dualThing); // [ '0', '1', '2', 'prop' ]
@@ -51,7 +51,7 @@ Object.keys(dualThing); // [ '0', '1', '2', 'prop' ]
 t.isObject(dualThing); // false
 t.isString(dualThing); // true
 t.hasKeys(dualThing); // true
-````
+```
 
 ## Installation
 
@@ -64,7 +64,7 @@ Install development dependencies
 
 ```bash
 $ npm install
-```
+```````
 
 Run the tests
 
