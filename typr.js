@@ -1,16 +1,7 @@
-var t = {}
-  , toStr = Object.prototype.toString;
+var toStr = Object.prototype.toString
+  , t = {};
 
-[
-  'Function'
-, 'Object'    // Object(obj) === obj is not simply true for basetype Object elements
-, 'Date'
-, 'Number'    // Note: Number includes {NaN, Infinity, -Infinity} (but these can be tested for specifically below)
-, 'String'
-, 'Boolean'
-, 'RegExp'
-, 'Arguments' // should probably not use this - arguments going away
-]
+['Function', 'Object', 'Date', 'Number', 'String', 'Boolean', 'RegExp', 'Arguments']
 .forEach(function (type) {
   var expected = '[object ' + type + ']';
   t['is' + type] = function (o) {
@@ -18,12 +9,10 @@ var t = {}
   };
 });
 
-// Do this faster
 t.isArray = Array.isArray;
 t.isNaN = Number.isNaN;
 t.isNumeric = Number.isFinite;
 
-// +- Infinity is also a Number so this is also an extra test
 t.isInfinite = function (n) {
   return Math.abs(n) === Infinity;
 };
@@ -37,8 +26,6 @@ t.isUndefined = function (o) {
   return o === undef;
 };
 
-// does not follow the partition, but sometimes this is rather what we want
-// functions can have properties => they are Object like, with keys() defined
 t.hasKeys = function (o) {
   return Object(o) === o;
 };
