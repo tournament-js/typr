@@ -15,7 +15,7 @@
     "test": "tap ./test"
   },
   "devDependencies": {
-    "tap": "~0.3.1"
+    "tap": "~0.4.2"
   },
   "bugs": {
     "url": "http://github.com/clux/typr/issues"
