@@ -5,7 +5,7 @@
   "version": "0.2.0",
   "repository": {
     "type": "git",
-    "url": "git://github.com/clux/typr.git"
+    "url": "clux/typr"
   },
   "main": "typr.js",
   "engines": {
@@ -15,7 +15,7 @@
     "test": "tap ./test"
   },
   "devDependencies": {
-    "tap": "~0.3.1"
+    "tap": "~0.4.4"
   },
   "bugs": {
     "url": "http://github.com/clux/typr/issues"
