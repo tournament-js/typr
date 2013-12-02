@@ -1,4 +1,7 @@
-# typr [![Build Status](https://secure.travis-ci.org/clux/typr.png)](http://travis-ci.org/clux/typr) [![Dependency Status](https://david-dm.org/clux/typr.png)](https://david-dm.org/clux/typr)
+# typr
+[![Build Status](https://secure.travis-ci.org/clux/typr.png)](http://travis-ci.org/clux/typr)
+[![Dependency Status](https://david-dm.org/clux/typr.png)](https://david-dm.org/clux/typr)
+[![frozen](http://hughsk.github.io/stability-badges/dist/frozen.svg)](http://nodejs.org/api/documentation.html#documentation_stability_index)
 
 ## Mutually Exclusive JS Type Testring
 The aim of this module is to completely partition the set of JS objects into a set of types T:
