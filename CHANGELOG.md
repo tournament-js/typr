@@ -1,3 +1,7 @@
+0.2.1 / 2014-07-10
+==================
+  * Documentation and coverage maintenance release
+
 0.2.0 / 2012-10.19
 ==================
   * Defer to `Number.isFinite` and `Number.isNaN` (removes node 0.6 support)

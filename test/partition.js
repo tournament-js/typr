@@ -1,6 +1,4 @@
-var tap = require('tap')
-  , test = tap.test
-  , t = require('../typr.js')
+var t = require('../')
   , F = function () {};
 
 // this kind of case is slightly problematic
@@ -11,7 +9,7 @@ twoThing.prop = "hello";
 var twoThing2 = new String("wee");
 twoThing2.prop = "hi";
 
-test('hasKeys', function (a) {
+exports.hasKeys = function (a) {
   a.ok(t.hasKeys(twoThing), "function has keys");
   a.ok(t.hasKeys(twoThing2), "new String has keys");
   a.ok(!t.hasKeys(5), "number still isn't object like'");
@@ -27,8 +25,8 @@ test('hasKeys', function (a) {
       a.ok(Object.keys(el), "if hasKeys, keys work..");
     };
   });
-  a.end();
-});
+  a.done();
+};
 
 // We expect the that the following arrays can be partitioned as follows
 var expected = {
@@ -45,7 +43,7 @@ var expected = {
 , 'Arguments' : [ arguments ]
 };
 
-test('type partitioning', function (a) {
+exports.partitioning = function (a) {
   a.ok(t.isFunction, 't.isFunction exists');
 
   Object.keys(expected).forEach(function (type) {
@@ -107,5 +105,5 @@ test('type partitioning', function (a) {
   // isInfinite should fail for a Number and NaN
   a.ok(!t.isInfinite(NaN), "NaN is not Infinite");
   a.ok(!t.isInfinite(5), "5 is not Infinite");
-  a.end();
-});
+  a.done();
+};

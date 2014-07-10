@@ -3,19 +3,24 @@
   "name": "typr",
   "description": "Mutually exclusive type testing",
   "version": "0.2.0",
+  "stability": "frozen",
   "repository": {
     "type": "git",
     "url": "clux/typr"
   },
-  "main": "typr.js",
   "engines": {
     "node": ">=0.8"
   },
+  "main": "index.js",
   "scripts": {
-    "test": "tap ./test"
+    "test": "$(npm bin)/nodeunit --reporter=verbose test/*.js",
+    "coveralls": "$(npm bin)/jscoverage lib && TYPR_COV=1 $(npm bin)/nodeunit --reporter=lcov test | $(npm bin)/coveralls"
   },
+  "dependencies": {},
   "devDependencies": {
-    "tap": "~0.4.4"
+    "nodeunit": "~0.9.0",
+    "jscoverage": "~0.5.4",
+    "coveralls": "~2.11.1"
   },
   "bugs": {
     "url": "http://github.com/clux/typr/issues"
