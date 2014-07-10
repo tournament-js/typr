@@ -2,7 +2,7 @@
   "author": "Eirik Albrigtsen <analsandblaster@gmail.com>",
   "name": "typr",
   "description": "Mutually exclusive type testing",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "stability": "locked",
   "repository": {
     "type": "git",
