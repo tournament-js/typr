@@ -3,7 +3,7 @@
   "name": "typr",
   "description": "Mutually exclusive type testing",
   "version": "0.2.0",
-  "stability": "frozen",
+  "stability": "locked",
   "repository": {
     "type": "git",
     "url": "clux/typr"
