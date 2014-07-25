@@ -1,4 +1,4 @@
-var t = require('../')
+var t = require(process.env.TYPR_COV ? '../typr-cov.js' : '../')
   , F = function () {};
 
 // this kind of case is slightly problematic
